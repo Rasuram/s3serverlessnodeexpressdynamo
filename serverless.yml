@@ -1,0 +1,36 @@
+service: expressInAWSDemo #Name of your App
+
+provider:
+ name: aws
+ runtime: nodejs10.x # Node JS version
+ iamRoleStatements:
+   - Effect: Allow
+     Action:
+       - ses:*
+       - s3:*
+       - ses:SendEmail
+       - ses:SendTemplatedEmail
+       - ses:SendRawEmail
+       - dynamodb:DescribeTable
+       - dynamodb:Query
+       - dynamodb:Scan
+       - dynamodb:GetItem
+       - dynamodb:PutItem
+       - dynamodb:UpdateItem
+       - dynamodb:DeleteItem
+     Resource: "*"
+ memorySize: 512
+ timeout: 15
+ stage: stage
+ region: us-east-2 # AWS region
+
+
+functions:
+ api:
+   handler: lambda.handler
+   events:
+     - http: ANY /
+     - http: ANY /user/sendmail
+     - http: ANY /save/receipt
+     - http: ANY /user/details
+
