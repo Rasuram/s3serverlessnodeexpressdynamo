@@ -32,6 +32,7 @@ it will ask for Access Key and Secret key, you can find them in your AWS online 
 Run the following command to deploy the app as AWS Lambda function
 ```
 npm run deploy
+serverless deploy
 ```
 ##After deployment
 * Go to your AWS console and choose Lambda from Services.
@@ -39,11 +40,14 @@ npm run deploy
 * Find the URL to invoke your function in the API endpoint.
 * Your endpoint URL should look something like this
 ```
-https://abcd123.execute-api.us-east-1.amazonaws.com/production/{proxy+}
+https://abcd123.execute-api.us-east-2.amazonaws.com/stage/user/sendmail
+https://abcd123.execute-api.us-east-2.amazonaws.com/stage/user/details/:id
+
 ``` 
 ##Invoke your function
 omit the ' {proxy+} ' and use the rest of the URL to call the function
 ```
-https://abcd123.execute-api.us-east-1.amazonaws.com/production/
+https://abcd123.execute-api.us-east-2.amazonaws.com/stage/save/receipt
+https://abcd123.execute-api.us-east-2.amazonaws.com/stage/user/sendmail
 ``` 
 The above URL outputs the responce in app.get('/', (req, res) => {}) in the app.js file
