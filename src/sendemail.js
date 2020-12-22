@@ -12,7 +12,7 @@ const sendMail = async function (req, res) {
         "ToAddresses": [email]
     };
     let templateData = {};
-    templateData.link = `http://localhost:3000/reply?email=${email}`
+    templateData.link = `https://master.dlyq604hg02bi.amplifyapp.com/reply?email=${email}`
     templateData.subject = subject;
     templateData.message = message;
     let params1 = {
