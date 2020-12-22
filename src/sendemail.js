@@ -17,9 +17,9 @@ const sendMail = async function (req, res) {
     templateData.message = message;
     let params1 = {
         Template: {
-            TemplateName: 'TestTemplate13',
-            HtmlPart: "<p>{{message}}" +
-                "<a href={{link}}>reply me</a></p>",
+            TemplateName: 'TestTemplate14',
+            HtmlPart: "<div><p>{{message}}</p>" +
+                "<a href={{link}}>reply me</a></div>",
             SubjectPart: "{{subject}}",
             TextPart: 'Dear ,\r\nthanks for contacting.'
         }
@@ -30,7 +30,7 @@ const sendMail = async function (req, res) {
 
     params.Source = email;
     params.Destination = destination;
-    params.Template = "TestTemplate13";
+    params.Template = "TestTemplate14";
     params.TemplateData = JSON.stringify(templateData);
 
 

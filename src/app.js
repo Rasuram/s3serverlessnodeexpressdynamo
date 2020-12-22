@@ -28,7 +28,7 @@ app.post('/save/receipt', (req, res) => {
    dynamo.saveEmail(req,res);
 });
 
-app.get('/user/details/:id', (req, res, next) => {
+app.get('/user/details', (req, res, next) => {
    dynamo.getAllDetails(req,res);
 });
 

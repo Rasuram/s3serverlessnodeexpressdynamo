@@ -51,3 +51,7 @@ https://abcd123.execute-api.us-east-2.amazonaws.com/stage/save/receipt
 https://abcd123.execute-api.us-east-2.amazonaws.com/stage/user/sendmail
 ``` 
 The above URL outputs the responce in app.get('/', (req, res) => {}) in the app.js file
+```
+Context Diagram:
+```
+![alt text](./public/server-SES.jpg)

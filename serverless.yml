@@ -15,6 +15,7 @@ provider:
        - dynamodb:Query
        - dynamodb:Scan
        - dynamodb:GetItem
+       - dynamodb:CreateItem
        - dynamodb:PutItem
        - dynamodb:UpdateItem
        - dynamodb:DeleteItem
