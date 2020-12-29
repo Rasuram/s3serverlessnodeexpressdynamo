@@ -1,12 +1,11 @@
 const aws = require('aws-sdk');
 const {v4: uuidv4} = require('uuid');
-
 const docClient = new aws.DynamoDB.DocumentClient();
 aws.config.update({
     region: 'us-east-2'
 });
 const dynamodb = new aws.DynamoDB();
-
+const ses = new aws.SES();
 const params = {
     TableName: "SaveReceipts2",//save ticket
     KeySchema: [
@@ -30,10 +29,38 @@ dynamodb.createTable(params, function (err, data) {
     }
 });
 
+const sendMail = async function (req) {
+    const {replyEmail, subject, message} = req.body;
+    console.log("send reply email for: ", replyEmail, subject, message);
+    let params = {};
+    let templateData = {};
+    templateData.subject = `Re:${subject}`;
+    templateData.message = message;
+    let destination = {
+        "ToAddresses": [replyEmail]
+    };
+    params.Source = replyEmail;
+    templateData.link = `https://master.dlyq604hg02bi.amplifyapp.com/reply?email=${replyEmail}`
+    params.Destination = destination;
+    params.Template = "TestTemplate14";
+    params.TemplateData = JSON.stringify(templateData);
+
+
+    ses.sendTemplatedEmail(params, function (email_err, email_data) {
+        if (email_err) {
+            console.error("Failed to send reply email : " + email_err);
+        } else {
+            console.info("Successfully sent reply email : " + JSON.stringify(email_data));
+        }
+    })
+}
+
+
 const saveEmail = async function (req, res) {
-    const {mail, status, userName, message} = req.body;
+    const {replyEmail, status, userName, message} = req.body;
     let generateUnknownShopperId = () => uuidv4().replace(/-/g, '').toUpperCase();
     let uuid = generateUnknownShopperId();
+    await sendMail(req);
     const params = {
         TableName: 'SaveReceipts2',
         Item: {
@@ -41,7 +68,7 @@ const saveEmail = async function (req, res) {
             status: status,
             ticketId: uuid,
             name: userName,
-            mail: mail,
+            mail: replyEmail,
             message: message
         }
     };

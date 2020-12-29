@@ -5,7 +5,6 @@ aws.config.update({
 
 const ses = new aws.SES();
 const sendMail = async function (req, res) {
-    let params = {};
     console.log(req.body);
     const {userName, email, subject, message} = req.body;
     let destination = {
@@ -27,7 +26,7 @@ const sendMail = async function (req, res) {
     await ses.createTemplate(params1, function (err, data) {
     });
 
-
+    let params = {};
     params.Source = email;
     params.Destination = destination;
     params.Template = "TestTemplate14";
