@@ -32,5 +32,4 @@ app.get('/user/details', (req, res, next) => {
    dynamo.getAllDetails(req,res);
 });
 
-
 module.exports = app;

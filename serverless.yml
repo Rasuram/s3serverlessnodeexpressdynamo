@@ -25,7 +25,6 @@ provider:
  stage: dev
  region: us-east-2 # AWS region
 
-
 functions:
  api:
    handler: lambda.handler

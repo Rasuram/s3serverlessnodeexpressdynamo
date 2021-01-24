@@ -50,7 +50,6 @@ const sendMail = async function (req, res) {
     })
 }
 
-
 module.exports = {
     sendMail
 };

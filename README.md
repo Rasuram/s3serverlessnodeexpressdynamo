@@ -54,4 +54,4 @@ The above URL outputs the responce in app.get('/', (req, res) => {}) in the app.
 ```
 Context Diagram:
 ```
-![alt text](./public/server-SES.jpg)
+![alt text](public/server-context.jpg)

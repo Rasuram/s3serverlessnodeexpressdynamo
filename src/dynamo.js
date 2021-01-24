@@ -4,6 +4,7 @@ const docClient = new aws.DynamoDB.DocumentClient();
 aws.config.update({
     region: 'us-east-2'
 });
+
 const dynamodb = new aws.DynamoDB();
 const ses = new aws.SES();
 const params = {
