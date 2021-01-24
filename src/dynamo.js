@@ -43,7 +43,7 @@ const sendMail = async function (req) {
     params.Source = replyEmail;
     templateData.link = `https://master.dlyq604hg02bi.amplifyapp.com/reply?email=${replyEmail}`
     params.Destination = destination;
-    params.Template = "TestTemplate14";
+    params.Template = "TestTemplate18";
     params.TemplateData = JSON.stringify(templateData);
 
 

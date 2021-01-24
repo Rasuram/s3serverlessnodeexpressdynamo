@@ -6,7 +6,7 @@ aws.config.update({
 const ses = new aws.SES();
 const sendMail = async function (req, res) {
     console.log(req.body);
-    const {userName, email, subject, message} = req.body;
+    const {email, subject, message} = req.body;
     let destination = {
         "ToAddresses": [email]
     };
@@ -14,10 +14,11 @@ const sendMail = async function (req, res) {
     templateData.link = `https://master.dlyq604hg02bi.amplifyapp.com/reply?email=${email}`
     templateData.subject = subject;
     templateData.message = message;
+
     let params1 = {
         Template: {
-            TemplateName: 'TestTemplate14',
-            HtmlPart: "<div><p>{{message}}</p>" +
+            TemplateName: 'TestTemplate18',
+            HtmlPart: "<div><p><textarea style=\"color:coral;\" className={`textarea resize-ta`}>{{message}}</textarea></p>" +
                 "<a href={{link}}>reply me</a></div>",
             SubjectPart: "{{subject}}",
             TextPart: 'Dear ,\r\nthanks for contacting.'
@@ -29,7 +30,7 @@ const sendMail = async function (req, res) {
     let params = {};
     params.Source = email;
     params.Destination = destination;
-    params.Template = "TestTemplate14";
+    params.Template = "TestTemplate18";
     params.TemplateData = JSON.stringify(templateData);
 
 

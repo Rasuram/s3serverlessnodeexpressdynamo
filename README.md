@@ -10,7 +10,7 @@ npm start
  * lambda.js - File which is called by AWS lambda
  * local.js - Run the app on localhost.
  * src/app.js - Your App logic
- * serverless.yml - Lambda function configration.
+ * serverless.yml - Lambda function configuration.
 ## How to use
 * Both the lambda.js and local.js calls the express **app** in the src/app.js
 * Write your business logic (Express API) inside the **src** folder
